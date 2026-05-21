@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme — matches "Codex" preset from 设置-外观 1.png */
+  --surface: rgba(255, 255, 255, 0);
+  --surface-elevated: #ffffff;
+  --surface-sidebar: #d4d4d4;
+
+  --foreground: #1a1c1f;
+  --foreground-muted: #4b5159;
+  --foreground-subtle: #8d949d;
+
+  --accent: #339cff;
+  --accent-foreground: #ffffff;
+
+  --border: rgba(0, 0, 0, 0.07);
+  --border-strong: rgba(0, 0, 0, 0.14);
+  --ring: rgba(51, 156, 255, 0.45);
+  --placeholder: rgba(26, 28, 31, 0.42);
+  --composer-bg: rgba(255, 255, 255, 0.92);
+  --composer-ring: rgba(0, 0, 0, 0.1);
+  --composer-divider: rgba(0, 0, 0, 0.08);
+  --code-bg: #ffffff;
+  --code-fg: #1f2328;
+  --code-muted: #6e7781;
+  --code-active-line: #eaf2ff;
+  --diff-hunk-bg: #f1f3f5;
+  --diff-add-bg: #dafbe1;
+  --diff-del-bg: #ffebe9;
+  --diff-add-emphasis-bg: #aceebb;
+  --diff-del-emphasis-bg: #ffcecb;
+  --diff-add-fg: #116329;
+  --diff-del-fg: #a40e26;
+
+  /* Account-popover usage meter fill — warm amber, matches screenshot 7 */
+  --meter-amber: #e4a23a;
+
+  --font-ui: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --surface: rgba(24, 24, 24, 0);
+  --surface-elevated: #181818;
+  --surface-sidebar: #4a4a4a;
+
+  --foreground: #ffffff;
+  --foreground-muted: rgba(255, 255, 255, 0.72);
+  --foreground-subtle: rgba(255, 255, 255, 0.45);
+
+  --accent: #339cff;
+  --accent-foreground: #ffffff;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --ring: rgba(51, 156, 255, 0.5);
+  --placeholder: rgba(255, 255, 255, 0.42);
+  --composer-bg: rgba(39, 39, 43, 0.94);
+  --composer-ring: rgba(255, 255, 255, 0.1);
+  --composer-divider: rgba(255, 255, 255, 0.08);
+  --code-bg: #151515;
+  --code-fg: #d4d4d4;
+  --code-muted: #8b8b8b;
+  --code-active-line: #26364a;
+  --diff-hunk-bg: #2b2b2b;
+  --diff-add-bg: #14351e;
+  --diff-del-bg: #3f1b17;
+  --diff-add-emphasis-bg: #194326;
+  --diff-del-emphasis-bg: #4b211c;
+  --diff-add-fg: #3ddc84;
+  --diff-del-fg: #ff5c5c;
+
+  --meter-amber: #f0b04a;
+
+  color-scheme: dark;
+}
+
+/* ---------------------------------------------------------------------
+ * Dark-mode cross-cutting overrides. Many existing components hardcode
+ * `bg-white`, `ring-black/[0.0X]`, `border-black/[0.0X]`, and dark hover
+ * bgs that were authored for light mode only — instead of touching all
+ * 27 files we flip the underlying utility output when [data-theme=dark]
+ * is set on <html>. Anything that is INTENTIONALLY white on dark (rare —
+ * e.g. the submit-button circle in Composer) should use `dark:bg-white`
+ * explicitly so this rule doesn't apply.
+ * ------------------------------------------------------------------- */
+[data-theme="dark"] {
+  /* popover / menu / card surfaces */
+  .bg-white {
+    background-color: rgb(38, 38, 38);
+  }
+  .bg-white\/80 {
+    background-color: rgba(38, 38, 38, 0.85);
+  }
+  .bg-white\/85 {
+    background-color: rgba(38, 38, 38, 0.88);
+  }
+  .bg-white\/90 {
+    background-color: rgba(38, 38, 38, 0.92);
+  }
+  .bg-white\/95 {
+    background-color: rgba(38, 38, 38, 0.95);
+  }
+
+  /* hairline rings */
+  .ring-black\/\[0\.05\] {
+    --tw-ring-color: rgba(255, 255, 255, 0.07);
+  }
+  .ring-black\/\[0\.06\] {
+    --tw-ring-color: rgba(255, 255, 255, 0.08);
+  }
+  .ring-black\/\[0\.08\] {
+    --tw-ring-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* borders + dividers */
+  .border-black\/\[0\.05\] {
+    border-color: rgba(255, 255, 255, 0.07);
+  }
+  .border-black\/\[0\.06\] {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .divide-black\/\[0\.05\] > * + * {
+    border-color: rgba(255, 255, 255, 0.07);
+  }
+  .divide-black\/\[0\.06\] > * + * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* hover affordances */
+  .hover\:bg-black\/\[0\.03\]:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  .hover\:bg-black\/\[0\.035\]:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+  }
+  .hover\:bg-black\/\[0\.04\]:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+  .hover\:bg-black\/\[0\.05\]:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+  .hover\:bg-black\/\[0\.06\]:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* active/selected bgs */
+  .bg-black\/\[0\.04\] {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+  .bg-black\/\[0\.05\] {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+  .bg-black\/\[0\.06\] {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  .bg-black\/\[0\.07\] {
+    background-color: rgba(255, 255, 255, 0.09);
+  }
+
+  /* data-state highlighted (Radix menus/dropdowns) */
+  [data-highlighted].data-\[highlighted\]\:bg-black\/\[0\.04\] {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+  [data-highlighted].data-\[highlighted\]\:bg-black\/\[0\.05\] {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--foreground);
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[data-resizing-panels="true"] .panel-resize {
+  transition: none !important;
+}
+
+html[data-resizing-panels="true"] iframe,
+html[data-resizing-panels="true"] webview {
+  pointer-events: none;
+}
+
+.review-shell {
+  contain: layout paint;
+  transform: translateZ(0);
+  will-change: width;
+}
+
+.review-pane {
+  contain: layout paint;
+}
+
+@keyframes terminal-caret-blink {
+  0%,
+  52% {
+    opacity: 1;
+  }
+  53%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.terminal-caret {
+  forced-color-adjust: none;
+}
+
+.terminal-caret-blink {
+  animation: terminal-caret-blink 1.1s steps(1, end) infinite;
+}
+
+.\[app-region\:drag\] {
+  -webkit-app-region: drag;
+}
+
+.\[app-region\:no-drag\] {
+  -webkit-app-region: no-drag;
+}
+
+button {
+  -webkit-app-region: no-drag;
+}
+
+input,
+textarea,
+select,
+[contenteditable="true"] {
+  -webkit-app-region: no-drag;
+}
+
+[data-window-nav-chrome] button,
+[data-window-nav-chrome] button * {
+  -webkit-app-region: no-drag;
+}
+
+[data-window-nav-chrome] [data-window-nav-actions],
+[data-window-nav-chrome] [data-window-nav-actions] * {
+  -webkit-app-region: no-drag;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.18);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--surface-elevated);
+}

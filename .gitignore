@@ -1,0 +1,25 @@
+node_modules/
+.vite/
+out/
+dist/
+release/
+coverage/
+
+.DS_Store
+*.log
+*.local
+
+.env
+.env.*
+!.env.example
+
+# Local distributables and generated binary artifacts should not be committed.
+*.dmg
+*.zip
+*.asar
+
+# Local AI/image outputs are user-machine specific.
+generated_images/
+
+# Machine-specific registry/mirror config — each developer sets their own.
+.npmrc

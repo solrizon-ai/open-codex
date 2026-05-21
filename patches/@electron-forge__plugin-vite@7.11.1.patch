@@ -1,0 +1,13 @@
+diff --git a/dist/config/vite.base.config.js b/dist/config/vite.base.config.js
+index 39e17412a8d0bd26473090b9f1dc47a37201c0c6..5202944c23d7a9a2ace71b1fb6c2f10391371855 100644
+--- a/dist/config/vite.base.config.js
++++ b/dist/config/vite.base.config.js
+@@ -72,7 +72,7 @@ function pluginExposeRenderer(name) {
+                 const addressInfo = server.httpServer?.address();
+                 // Expose env constant for main process use.
+                 viteDevServerUrls[VITE_DEV_SERVER_URL] =
+-                    `http://localhost:${addressInfo?.port}`;
++                    `http://127.0.0.1:${addressInfo?.port}`;
+             });
+         },
+     };
