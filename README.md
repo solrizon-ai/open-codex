@@ -4,6 +4,16 @@ Codex Reverse is a macOS desktop client for local agent CLIs. It can run with a 
 
 The app does not bundle an account, token, or fixed CLI binary. Each user should install and configure their own CLI first.
 
+## Screenshots
+
+| Claude Code mode | Slash commands |
+|---|---|
+| ![Claude Code chat interface showing project sidebar and active conversation](png/1.png) | ![Slash command palette listing built-in and plugin commands](png/2.png) |
+
+| Codex mode commands | Chat + diff review + terminal |
+|---|---|
+| ![Codex mode with slash command palette open showing /model, /permissions, /fast](png/3.png) | ![Three-pane layout: chat on the left, file diff on the right, integrated terminal below](png/4.png) |
+
 ## Requirements
 
 - macOS
